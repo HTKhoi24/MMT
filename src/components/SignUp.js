@@ -1,83 +1,198 @@
 import React, { Component } from 'react'
 import Header from './Header'
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import '../Css/mystyle.css'
 
+const formValid = ({formErrors, ...rest}) => {
+    let valid = true;
+    Object.values(formErrors).forEach(val => { //Object.values tra ve 1 mang cac thuoc tinh dem duoc trong doi tuong
+        val.length > 0 && (valid = false)
+    })
+    Object.values(rest).forEach(val => {
+        val === '' && (valid = false)
+    })
+    return valid
+}
+const phoneNumberRegex = RegExp(/(09|01[2|6|8|9])+([0-9]{8})\b/g)
+const emailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
 export default class SignUp extends Component {
-    render() {
-        return (
-            <div>
-                <Header/>
-                <div className="container">
-                <Form>
-                    <FormGroup row>
-                        <Label for="firstName" sm={2}>First Name : </Label>
-                        <Col sm={10}>
-                            <Input type="text" name="firstName" id="firstName" placeholder="First Name" />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="lastName" sm={2}>Last Name : </Label>
-                        <Col sm={10}>
-                            <Input type="text" name="lastName" id="lastName" placeholder="Last Name" />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="userName" sm={2}>User Name : </Label>
-                        <Col sm={10}>
-                            <Input type="text" name="userName" id="userName" placeholder="User Name" />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="email" sm={2}>Email : </Label>
-                        <Col sm={10}>
-                            <Input type="email" name="email" id="email" placeholder="Your Email Address" />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="password" sm={2}>Password :</Label>
-                        <Col sm={10}>
-                            <Input type="password" name="password" id="password" placeholder="Your Password" />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="gender" sm={2}>Gender : </Label>
-                            <Col sm={10}>
-                                <Input type="select" name="select" id="select" >
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </Input>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="birthDate" sm={2}>Date Of Birth : </Label>
-                        <Col sm={10}>
-                            <Input
-                                type="date"
-                                name="date"
-                                id="exampleDate"
-                                placeholder="date placeholder"
-                            />
-                        </Col>
-                    </FormGroup>
-                    {/* <FormGroup row>
-                        <Label for="exampleFile" sm={2}>File</Label>
-                        <Col sm={10}>
-                            <Input type="file" name="file" id="exampleFile" />
-                            <FormText color="muted">
-                                This is some placeholder block-level help text for the above input.
-                                It's a bit lighter and easily wraps to a new line.
-          </FormText>
-                        </Col>
-                    </FormGroup> */}
+    constructor(props) {
+        super(props)
 
-                    <FormGroup check row>
-                        <Col sm={{ size: 10, offset: 2 }}>
-                            <Button>Submit</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-    
-                </div>    
+        this.state = {
+            fullName: '',
+            email: '',
+            userName: '',
+            passWord: '',
+            phoneNumber: '',
+            birthDay: '',
+            formErrors: {
+                fullName: '',
+                email: '',
+                userName: '',
+                passWord: '',
+                phoneNumber: '',
+                birthDay: '',
+            }
+        }
+    }
+
+    handleChange = (evt) => {
+        const { name, value } = evt.target
+        this.setState({
+            [evt.target.name]: evt.target.value
+        })
+        let formErrors = this.state.formErrors;
+        switch (name) {
+            case 'fullName':
+                formErrors.fullName = value.length < 3
+                    ? '*Minimum 3 characters required*'
+                    : ''
+                break;
+            case 'userName':
+                formErrors.userName = value.length < 10 
+                    ? '*Minimum 10 characters required*'
+                    : ''
+                break;
+            case 'email':
+                formErrors.email = emailRegex.test(value)
+                    ? ''
+                    : '*Invalid email address*'
+                break;
+            case 'passWord':
+                formErrors.passWord = value.length < 6 
+                    ? '*Minimum 6 characters required*'
+                    : ''
+                break;
+            case 'phoneNumber':
+                formErrors.phoneNumber = phoneNumberRegex.test(value)
+                    ? ''
+                    : '*Invalid phone nummber*'
+                break;
+            default:
+        }
+        this.setState({ formErrors, [name]: value })
+    }
+    handleSubmit = (evt) => {
+        evt.preventDefault();
+        if (formValid(this.state)) {
+            console.log('Submit thanh cong');
+            console.log(this.state) // Tra ve server
+        } else {
+            console.log('Submit that bai - form invalid');
+            alert('Điền đàng hoàng vô cho tao')
+        }
+    }
+    render() {
+        const { formErrors } = this.state
+        return (
+            <div className="signUpForm">
+                <Header />
+                <div className="containerform">
+                    <form onSubmit={this.handleSubmit}>
+                        <h1 className="text-center h1Signup">Sign Up</h1>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Full Name</label>
+                            <div class="input-group mb-2">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text"><i class="fa fa-dice-d20"></i></div>
+                                </div>
+                                <input type="text" className="form-control"
+                                    placeholder="Fullname"
+                                    name="fullName"
+                                    value={this.state.fullName}
+                                    onChange={this.handleChange} />
+
+                            </div>
+                            {formErrors.fullName.length > 0 && (
+                                <span className="errorMessage">{formErrors.fullName}</span>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputEmail1">Email Address</label>
+                            <div class="input-group mb-2">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text"><i class="fa fa-envelope"></i></div>
+                                </div>
+                                <input type="email" className="form-control"
+
+                                    placeholder="Enter Email"
+                                    name="email"
+                                    value={this.state.email}
+                                    onChange={this.handleChange} />
+                            </div>
+                            {formErrors.email.length > 0 && (
+                                <span className="errorMessage">{formErrors.email}</span>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Username</label>
+                            <div class="input-group mb-2">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text"><i class="fa fa-user"></i></div>
+                                </div>
+                                <input type="text" className="form-control"
+
+                                    placeholder="Username"
+                                    name="userName"
+                                    value={this.state.userName}
+                                    onChange={this.handleChange} />
+                            </div>
+                            {formErrors.userName.length > 0 && (
+                                <span className="errorMessage">{formErrors.userName}</span>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Password</label>
+                            <div class="input-group mb-2">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text"><i class="fa fa-key"></i></div>
+                                </div>
+                                <input type="password" className="form-control"
+
+                                    placeholder="Password"
+                                    name="passWord"
+                                    value={this.state.passWord}
+                                    onChange={this.handleChange} />
+                            </div>
+                            {formErrors.passWord.length > 0 && (
+                                <span className="errorMessage">{formErrors.passWord}</span>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Phone Number</label>
+                            <div class="input-group mb-2">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text"><i class="fa fa-phone-volume"></i></div>
+                                </div>
+                                <input type="tel" className="form-control"
+                                    placeholder="Phone Number"
+                                    name="phoneNumber"
+                                    value={this.state.phoneNumber}
+                                    onChange={this.handleChange} />
+                            </div>
+                            {formErrors.phoneNumber.length > 0 && (
+                                <span className="errorMessage">{formErrors.phoneNumber}</span>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="exampleInputPassword1">Birthday</label>
+                            <div class="input-group mb-2">
+                                <div className="input-group-prepend">
+                                    <div className="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                </div>
+                                <input type="date" className="form-control"
+
+                                    placeholder="dd/mm/yyyy"
+                                    name="birthDay"
+                                    value={this.state.birthDay}
+                                    onChange={this.handleChange} />
+                            </div>
+                        </div>
+
+                        <button type="submit" className="btn btn-primary btnSignUp">Sign Up</button>
+                    </form>
+                </div>
+
             </div>
         )
     }
