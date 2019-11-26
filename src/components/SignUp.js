@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from './Header'
 import '../Css/mystyle.css'
 
-const formValid = ({formErrors, ...rest}) => {
+const formValid = ({ formErrors, ...rest }) => {
     let valid = true;
     Object.values(formErrors).forEach(val => { //Object.values tra ve 1 mang cac thuoc tinh dem duoc trong doi tuong
         val.length > 0 && (valid = false)
@@ -90,45 +90,50 @@ export default class SignUp extends Component {
                 <div className="containerform">
                     <form onSubmit={this.handleSubmit}>
                         <h2 className="text-center h1Signup">Sign Up</h2>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1">Full Name</label>
-                            <div class="input-group">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-dice-d20"></i></div>
-                                </div>
-                                <input type="text" className="form-control"
-                                    placeholder="Fullname"
-                                    name="fullName"
-                                    value={this.state.fullName}
-                                    onChange={this.handleChange} />
+                        <div className="row">
+                            <div className="col-6">
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputPassword1">Full Name</label>
+                                    <div class="input-group">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text"><i class="fa fa-dice-d20"></i></div>
+                                        </div>
+                                        <input type="text" className="form-control"
+                                            placeholder="Fullname"
+                                            name="fullName"
+                                            value={this.state.fullName}
+                                            onChange={this.handleChange} />
 
-                            </div>
-                            {formErrors.fullName.length > 0 && (
-                                <span className="errorMessage">{formErrors.fullName}</span>
-                            )}
-                            {this.state.fullName === '' && (
-                                <span className="errorMessage">*Fullname is not empty*</span>
-                            )}
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Email Address</label>
-                            <div class="input-group">
-                                <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-envelope"></i></div>
+                                    </div>
+                                    {formErrors.fullName.length > 0 && (
+                                        <span className="errorMessage">{formErrors.fullName}</span>
+                                    )}
+                                    {this.state.fullName === '' && (
+                                        <span className="errorMessage">*Fullname is not empty*</span>
+                                    )}
                                 </div>
-                                <input type="email" className="form-control"
-
-                                    placeholder="Enter Email"
-                                    name="email"
-                                    value={this.state.email}
-                                    onChange={this.handleChange} />
                             </div>
-                            {formErrors.email.length > 0 && (
-                                <span className="errorMessage">{formErrors.email}</span>
-                            )}
-                            {this.state.email === '' && (
-                                <span className="errorMessage">*Email is not empty*</span>
-                            )}
+                            <div className="col-6">
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputPassword1">Phone Number</label>
+                                    <div class="input-group">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text"><i class="fa fa-phone-volume"></i></div>
+                                        </div>
+                                        <input type="tel" className="form-control"
+                                            placeholder="Phone Number"
+                                            name="phoneNumber"
+                                            value={this.state.phoneNumber}
+                                            onChange={this.handleChange} />
+                                    </div>
+                                    {formErrors.phoneNumber.length > 0 && (
+                                        <span className="errorMessage">{formErrors.phoneNumber}</span>
+                                    )}
+                                    {this.state.phoneNumber === '' && (
+                                        <span className="errorMessage">*Phone number is not empty*</span>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Username</label>
@@ -170,23 +175,25 @@ export default class SignUp extends Component {
                                 <span className="errorMessage">*Password is not empty*</span>
                             )}
                         </div>
+
                         <div className="form-group">
-                            <label htmlFor="exampleInputPassword1">Phone Number</label>
+                            <label htmlFor="exampleInputEmail1">Email Address</label>
                             <div class="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-phone-volume"></i></div>
+                                    <div className="input-group-text"><i class="fa fa-envelope"></i></div>
                                 </div>
-                                <input type="tel" className="form-control"
-                                    placeholder="Phone Number"
-                                    name="phoneNumber"
-                                    value={this.state.phoneNumber}
+                                <input type="email" className="form-control"
+
+                                    placeholder="Enter Email"
+                                    name="email"
+                                    value={this.state.email}
                                     onChange={this.handleChange} />
                             </div>
-                            {formErrors.phoneNumber.length > 0 && (
-                                <span className="errorMessage">{formErrors.phoneNumber}</span>
+                            {formErrors.email.length > 0 && (
+                                <span className="errorMessage">{formErrors.email}</span>
                             )}
-                            {this.state.phoneNumber === '' && (
-                                <span className="errorMessage">*Phone number is not empty*</span>
+                            {this.state.email === '' && (
+                                <span className="errorMessage">*Email is not empty*</span>
                             )}
                         </div>
                         <div className="form-group">
@@ -210,3 +217,5 @@ export default class SignUp extends Component {
         )
     }
 }
+
+

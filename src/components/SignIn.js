@@ -108,8 +108,9 @@ export default class SignIn extends Component {
                                 <span className="errorMessage">{formErrors.passWord}</span>
                             )}
                         </div>
-                        </form>
                         <button type = "submit" className="btn btn-primary btnSignIn">Sign In</button>
+                        </form>
+                        
                 </div>
             </div>
         )
