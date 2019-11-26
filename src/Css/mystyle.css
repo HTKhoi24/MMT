@@ -1,4 +1,6 @@
-
+*{
+    box-sizing: border-box;
+}
 .navbar{
     background-color: #000080;
 }
@@ -27,6 +29,7 @@
 .btnSignUp:hover{
     background: linear-gradient(to right, 	#123054,	#1E90FF 	);
 }
+
 .form-group input:focus{
     outline: none;
     box-shadow: none;

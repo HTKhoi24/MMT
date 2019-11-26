@@ -17,7 +17,6 @@ const emailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)
 export default class SignUp extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             fullName: '',
             email: '',
@@ -44,12 +43,12 @@ export default class SignUp extends Component {
         let formErrors = this.state.formErrors;
         switch (name) {
             case 'fullName':
-                formErrors.fullName = value.length < 3
+                formErrors.fullName = value.length < 3 && value.length > 0
                     ? '*Minimum 3 characters required*'
                     : ''
                 break;
             case 'userName':
-                formErrors.userName = value.length < 10 
+                formErrors.userName = value.length < 10 && value.length > 0
                     ? '*Minimum 10 characters required*'
                     : ''
                 break;
@@ -59,7 +58,7 @@ export default class SignUp extends Component {
                     : '*Invalid email address*'
                 break;
             case 'passWord':
-                formErrors.passWord = value.length < 6 
+                formErrors.passWord = value.length < 6 && value.length > 0
                     ? '*Minimum 6 characters required*'
                     : ''
                 break;
@@ -79,6 +78,7 @@ export default class SignUp extends Component {
             console.log(this.state) // Tra ve server
         } else {
             console.log('Submit that bai - form invalid');
+            console.log(this.state)
             alert('Điền đàng hoàng vô cho tao')
         }
     }
@@ -89,10 +89,10 @@ export default class SignUp extends Component {
                 <Header />
                 <div className="containerform">
                     <form onSubmit={this.handleSubmit}>
-                        <h1 className="text-center h1Signup">Sign Up</h1>
+                        <h2 className="text-center h1Signup">Sign Up</h2>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Full Name</label>
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i class="fa fa-dice-d20"></i></div>
                                 </div>
@@ -106,10 +106,13 @@ export default class SignUp extends Component {
                             {formErrors.fullName.length > 0 && (
                                 <span className="errorMessage">{formErrors.fullName}</span>
                             )}
+                            {this.state.fullName === '' && (
+                                <span className="errorMessage">*Fullname is not empty*</span>
+                            )}
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Email Address</label>
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i class="fa fa-envelope"></i></div>
                                 </div>
@@ -123,10 +126,13 @@ export default class SignUp extends Component {
                             {formErrors.email.length > 0 && (
                                 <span className="errorMessage">{formErrors.email}</span>
                             )}
+                            {this.state.email === '' && (
+                                <span className="errorMessage">*Email is not empty*</span>
+                            )}
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Username</label>
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i class="fa fa-user"></i></div>
                                 </div>
@@ -140,10 +146,13 @@ export default class SignUp extends Component {
                             {formErrors.userName.length > 0 && (
                                 <span className="errorMessage">{formErrors.userName}</span>
                             )}
+                            {this.state.userName === '' && (
+                                <span className="errorMessage">*Username is not empty*</span>
+                            )}
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Password</label>
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i class="fa fa-key"></i></div>
                                 </div>
@@ -157,10 +166,13 @@ export default class SignUp extends Component {
                             {formErrors.passWord.length > 0 && (
                                 <span className="errorMessage">{formErrors.passWord}</span>
                             )}
+                            {this.state.passWord === '' && (
+                                <span className="errorMessage">*Password is not empty*</span>
+                            )}
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Phone Number</label>
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i class="fa fa-phone-volume"></i></div>
                                 </div>
@@ -173,10 +185,13 @@ export default class SignUp extends Component {
                             {formErrors.phoneNumber.length > 0 && (
                                 <span className="errorMessage">{formErrors.phoneNumber}</span>
                             )}
+                            {this.state.phoneNumber === '' && (
+                                <span className="errorMessage">*Phone number is not empty*</span>
+                            )}
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Birthday</label>
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text"><i class="fa fa-calendar-alt"></i></div>
                                 </div>
@@ -188,7 +203,6 @@ export default class SignUp extends Component {
                                     onChange={this.handleChange} />
                             </div>
                         </div>
-
                         <button type="submit" className="btn btn-primary btnSignUp">Sign Up</button>
                     </form>
                 </div>
