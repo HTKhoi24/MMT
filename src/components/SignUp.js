@@ -94,9 +94,9 @@ export default class SignUp extends Component {
                             <div className="col-6">
                                 <div className="form-group">
                                     <label htmlFor="exampleInputPassword1">Full Name</label>
-                                    <div class="input-group">
+                                    <div className="input-group">
                                         <div className="input-group-prepend">
-                                            <div className="input-group-text"><i class="fa fa-dice-d20"></i></div>
+                                            <div className="input-group-text"><i className="fa fa-dice-d20"></i></div>
                                         </div>
                                         <input type="text" className="form-control"
                                             placeholder="Fullname"
@@ -116,9 +116,9 @@ export default class SignUp extends Component {
                             <div className="col-6">
                                 <div className="form-group">
                                     <label htmlFor="exampleInputPassword1">Phone Number</label>
-                                    <div class="input-group">
+                                    <div className="input-group">
                                         <div className="input-group-prepend">
-                                            <div className="input-group-text"><i class="fa fa-phone-volume"></i></div>
+                                            <div className="input-group-text"><i className="fa fa-phone-volume"></i></div>
                                         </div>
                                         <input type="tel" className="form-control"
                                             placeholder="Phone Number"
@@ -137,9 +137,9 @@ export default class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Username</label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-user"></i></div>
+                                    <div className="input-group-text"><i className="fa fa-user"></i></div>
                                 </div>
                                 <input type="text" className="form-control"
 
@@ -157,9 +157,9 @@ export default class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Password</label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-key"></i></div>
+                                    <div className="input-group-text"><i className="fa fa-key"></i></div>
                                 </div>
                                 <input type="password" className="form-control"
 
@@ -178,9 +178,9 @@ export default class SignUp extends Component {
 
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Email Address</label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-envelope"></i></div>
+                                    <div className="input-group-text"><i className="fa fa-envelope"></i></div>
                                 </div>
                                 <input type="email" className="form-control"
 
@@ -198,12 +198,11 @@ export default class SignUp extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Birthday</label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                    <div className="input-group-text"><i className="fa fa-calendar-alt"></i></div>
                                 </div>
                                 <input type="date" className="form-control"
-
                                     placeholder="dd/mm/yyyy"
                                     name="birthDay"
                                     value={this.state.birthDay}
