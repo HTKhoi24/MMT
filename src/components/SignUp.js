@@ -206,7 +206,6 @@ export default class SignUp extends Component {
                         <button type="submit" className="btn btn-primary btnSignUp">Sign Up</button>
                     </form>
                 </div>
-
             </div>
         )
     }
