@@ -9,18 +9,19 @@ import {
 } from "react-router-dom";
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path = "/"><Home/></Route>
-          <Route exact path = "/SignIn"><SignIn/></Route>
-          <Route exact path = "/SignUp"><SignUp/></Route>
-        </Switch>
-      </Router>
-    </div>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/"><Home /></Route>
+            <Route exact path="/SignIn"><SignIn /></Route>
+            <Route exact path="/SignUp"><SignUp /></Route>
+          </Switch>
+        </Router>
+      </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
-import '../Css/mystyle.css'
+import '../css/mystyle.css'
 export default class Header extends Component {
     render() {
         return (

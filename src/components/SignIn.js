@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from './Header'
-import '../Css/mystyle.css'
+import '../css/SignIn.css'
 
 const formValid = ({formErrors, ...rest}) => {
     let valid = true;
@@ -71,14 +71,14 @@ export default class SignIn extends Component {
                 <div className="containerform" >
                     <h1 className = "text-center signInTitle">Sign In</h1>
                     <div className="userIcon">
-                    <i class="fas fa-user" ></i>
+                    <i className="fas fa-user" ></i>
                     </div>
                         <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Username</label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-user"></i></div>
+                                    <div className="input-group-text"><i className="fa fa-user"></i></div>
                                 </div>
                                 <input type="text" className="form-control"
 
@@ -93,9 +93,9 @@ export default class SignIn extends Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="exampleInputPassword1">Password</label>
-                            <div class="input-group">
+                            <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <div className="input-group-text"><i class="fa fa-key"></i></div>
+                                    <div className="input-group-text"><i className="fa fa-key"></i></div>
                                 </div>
                                 <input type="password" className="form-control"
 
