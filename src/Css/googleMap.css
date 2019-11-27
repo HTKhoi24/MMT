@@ -1,0 +1,12 @@
+.googleLocation{
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 2;
+    width: 100%;
+   
+}
+.googleLocation .map{
+    background: #999;
+    border:3px solid #00cdce;
+    padding: 15px;
+}

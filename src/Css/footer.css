@@ -1,0 +1,55 @@
+footer{
+    background: #00cdce;
+    color: white;
+    padding: 30px 5%;
+    width: 100%;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    margin-top: 0px;
+   
+   
+
+    
+}
+footer .footer__icon{
+    text-align: right;
+    
+}
+
+footer .footer__icon a i{
+    
+        color: white;
+        width: 35px;
+        height: 35px;
+        line-height: 33px;
+        border: 1px solid white;
+        margin: 10px;
+        text-align: center;
+        transition: all .5s;
+    
+   
+}
+footer .footer__icon a i .fa-facebook-f:hover, .fa-twitter:hover, .fa-vk:hover{
+    background: none;
+    color: #9ccdce;
+}
+footer .footer__icon a i .fa-wifi:hover{
+    background: none;
+    color: #a46c36;
+}
+
+footer p{
+    margin-top: 15px;
+    
+}
+footer p .vlth{
+    text-decoration: none;
+    color: red;
+    font-weight: normal;
+    transition: .5s;
+   
+}
+
+footer p .vlth:hover{
+    color: white;
+}
