@@ -119,7 +119,6 @@ class SignupForm extends Component {
                                 <Button type="primary" htmlType="submit" size="large" className="signup-form-button">Sign Up</Button>
                             </Form.Item>
                         </Form>
-
                     </div>
                 </div>
             </div>
