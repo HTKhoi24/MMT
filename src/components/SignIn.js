@@ -15,7 +15,6 @@ export default class SignIn extends Component {
     }
 }
 class SigninForm extends Component {
-
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
@@ -48,7 +47,7 @@ class SigninForm extends Component {
                             </Form.Item>
                             
                             <Form.Item>
-                                <Button type="primary" htmlType="submit" size="large" className="signup-form-button">Sign Up</Button>
+                                <Button type="primary" htmlType="submit" size="large" className="signup-form-button" onClick={() => this.handleLogin()}>Sign In</Button>
                             </Form.Item>
                         </Form>
                     </div>
