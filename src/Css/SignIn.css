@@ -45,3 +45,15 @@
 .signInForm .containerform .btnSignIn:hover{
     background: linear-gradient(to right, 	#123054,	#1E90FF 	);
 }
+.iconUserSignIn
+{
+    width: 150px;
+    height: 150px;
+    color: white;
+    font-size: 100px;
+    border: 1px solid #1e90ff;
+    border-radius: 50%;
+    line-height: 100px;
+    background: #1e90ff;
+    margin-bottom: 25px;
+}

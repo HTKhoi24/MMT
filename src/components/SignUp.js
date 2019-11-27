@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import '../css/SignUp.css'
+import '../css/mystyle.css'
 import { Form, Input, Button, Icon, DatePicker } from 'antd'
 
 export default class SignUp extends Component {
@@ -31,7 +32,7 @@ class SignupForm extends Component {
                 <Header/>
                 <div className="signup-container">
                     <div className="signup-form">
-                        <h1>Register</h1>
+                        <h1>Sign Up</h1>
                         <Form>
                             <Form.Item>
                                 {getFieldDecorator('fullname', {
