@@ -1,32 +1,33 @@
 .signup-container {
-    text-align: center;
-    background-image: url('/img/bgSignUp.jpg');
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 30px;
-  }
+  text-align: center;
+  background-image: url('/img/bgSignUp.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+}
   
-  .signup-container h1 {
-    color: #1e90ff;
-    font-size: 40px;
-  }
-  .ant-calendar-picker{
-      width: 100%;
-  }
-  .signup-form {
-    color: #fff494;
-    float: left;
-    margin-top: 30px;
-    min-width: 30vw;
-    background: white;
-    padding: 35px;
-    border-radius: 20px;
-  }
-  
-  .signup-form-button {
-      width: 100%;
-  }
+.signup-container h1 {
+  color: #1e90ff;
+  font-size: 40px;
+}
+
+.ant-calendar-picker{
+    width: 100%;
+}
+.signup-form {
+  color: #fff494;
+  float: left;
+  margin-top: 30px;
+  min-width: 30vw;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+}
+
+.signup-form-button {
+    width: 100%;
+}

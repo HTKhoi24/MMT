@@ -1,0 +1,43 @@
+.app-header {
+    background-color: #15009e;
+    width: 100%;
+    box-shadow: 0 2px 8px #f0f1f2;
+}
+
+.title-logo {
+    float: left;
+    margin-left: 10vw;
+}
+
+.title-name {
+    float: left;
+    margin-left: 10px;
+}
+
+.title-name a {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.title-menu {
+    background-color: #15009e;
+    float: right;
+    margin-right: 10vw;
+}
+
+.profile-dropdown-menu {
+    min-width: 180px;
+}
+
+.profile-menu .user-fullname-info {
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+.profile-menu .username-info {
+    font-size: 14px;
+    color: #828282;
+}
+  
