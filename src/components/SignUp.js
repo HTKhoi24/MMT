@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import { Form, Input, Button, Icon, DatePicker, notification } from 'antd'
 import '../css/SignUp.css'
-import { Form, Input, Button, Icon, DatePicker } from 'antd'
+import { signup } from '../api/APIUtil';
 
 export default class SignUp extends Component {
     render() {
@@ -14,6 +16,46 @@ export default class SignUp extends Component {
 }
 
 class SignupForm extends Component {
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                
+                const signupRequest = {
+                    ...values,
+                    'fullName': values['fullName'],
+                    'username': values['username'],
+                    'password': values['password'],
+                    'birthday': values['birthday'].format('DD/MM/YYYY'),
+                    'phone': values['phone'],
+                    'email': values['email'],
+                };
+                signup(signupRequest)
+                    .then(response => {
+                            notification.success({
+                                message: 'Smart Room',
+                                description: "You're successfully registered. Please Login to continue!",
+                            });          
+                            this.props.history.push("/signin");
+                    }).catch(error => {
+                        if(error.status === 400) {
+                            notification.error({
+                                message: 'Smart Room',
+                                description: error.message
+                            });
+                        } else {
+                            notification.error({
+                                message: 'Smart Room',
+                                description: error.message || 'Sorry! Something went wrong. Please try again!'
+                            });
+                        }
+                    });
+            }
+        });
+    }
+
+
     compareToFirstPassword = (rule, value, callback) => {
         const { form } = this.props;
         if (value && value !== form.getFieldValue('password')) {
@@ -29,9 +71,9 @@ class SignupForm extends Component {
             <div className="signup-container">
                 <div className="signup-form">
                     <h1>Sign Up</h1>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Item>
-                            {getFieldDecorator('fullname', {
+                            {getFieldDecorator('fullName', {
                                 rules: [{ required: true, message: 'Please input your full name!' }]
                             })(
                                 <Input
@@ -109,13 +151,14 @@ class SignupForm extends Component {
                                 <DatePicker
                                     size="large"
                                     placeholder="Date Of Birth"
-                                    prefix={<Icon type="calendar" />} />
+                                    format='DD/MM/YYYY' />
                             )}
                         </Form.Item>
                         <Form.Item>
                             <Button type="primary" htmlType="submit" size="large" className="signup-form-button">Sign Up</Button>
                         </Form.Item>
                     </Form>
+                    Already registerd? <Link to="/signin">Login now!</Link>
                 </div>
             </div>
         );

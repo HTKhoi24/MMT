@@ -35,7 +35,7 @@ class SigninForm extends Component {
                     } else {
                         notification.error({
                             message: 'Smart Room',
-                            description: error.message || 'Have error. Please try again!'
+                            description: error.message || 'Sorry! Something went wrong. Please try again!'
                         });
                     }
                 });
