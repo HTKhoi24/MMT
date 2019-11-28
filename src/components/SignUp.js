@@ -9,7 +9,7 @@ export default class SignUp extends Component {
         const SignUp = Form.create()(SignupForm)
         return (
             <div>
-                <SignUp />
+                <SignUp onSignUp={this.props.onSignUp}/>
             </div>
         )
     }
@@ -21,7 +21,7 @@ class SignupForm extends Component {
         event.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                
+
                 const signupRequest = {
                     ...values,
                     'fullName': values['fullName'],
@@ -33,13 +33,9 @@ class SignupForm extends Component {
                 };
                 signup(signupRequest)
                     .then(response => {
-                            notification.success({
-                                message: 'Smart Room',
-                                description: "You're successfully registered. Please Login to continue!",
-                            });          
-                            this.props.history.push("/signin");
+                        this.props.onSignUp();
                     }).catch(error => {
-                        if(error.status === 400) {
+                        if (error.status === 400) {
                             notification.error({
                                 message: 'Smart Room',
                                 description: error.message
@@ -70,7 +66,7 @@ class SignupForm extends Component {
         return (
             <div className="signup-container">
                 <div className="signup-form">
-                    <h1>Sign Up</h1>
+                    <h1>REGISTER</h1>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Item>
                             {getFieldDecorator('fullName', {

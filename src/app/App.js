@@ -42,6 +42,14 @@ class App extends Component {
       });
   }
 
+  handleSignUp = () => {
+    notification.success({
+      message: 'Smart Room',
+      description: "You're successfully registered. Please Login to continue!",
+    });
+    this.props.history.push("/signin");
+  }
+
   handleLogin = () => {
     notification.success({
       message: 'Smart Room',
@@ -80,7 +88,8 @@ class App extends Component {
             <Route exact path="/"><Home /></Route>
             <Route exact path="/SignIn"
               render={(props) => <SignIn onLogin={this.handleLogin} {...props} />}></Route>
-            <Route exact path="/SignUp"><SignUp /></Route>
+            <Route exact path="/SignUp"
+              render={(props) => <SignUp onSignUp={this.handleSignUp} {...props} />}></Route>
             <Route path="/user/:username"
               render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}>
             </Route>

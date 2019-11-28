@@ -48,8 +48,8 @@ class SigninForm extends Component {
         return (
             <div className="signin-container">
                 <div className="signin-form">
-                    <h1>Sign In</h1>
-                    <Icon type="user" className="iconUserSignIn"/>
+                    <Icon type="user" className="signin-icon"/>
+                    <h1>SIGN IN</h1>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Item>
                             {getFieldDecorator('username', {
