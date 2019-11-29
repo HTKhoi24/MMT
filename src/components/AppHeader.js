@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom';
 import logo from '../image/logo.svg';
-import '../css/AppHeader.css'
+import '../css/AppHeader.css';
 import { Layout, Menu, Dropdown, Icon } from 'antd';
 const { Header } = Layout;
 
