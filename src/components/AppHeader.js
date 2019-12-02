@@ -18,7 +18,7 @@ class AppHeader extends Component {
         if (this.props.currentUser) {
             menuItems = [
                 <Menu.Item key="/" >
-                    <Link style={{ color: '#ffffff' }} to="/">Trang chủ</Link>
+                    <Link style={{ color: '#ffffff' }} to="/">Home</Link>
                 </Menu.Item>,
                 <Menu.Item key="/profile" className="profile-menu">
                     <ProfileDropdownMenu
@@ -73,7 +73,7 @@ function ProfileDropdownMenu(props) {
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key="logout" >
-                Đăng xuất
+                Sign Out
         </Menu.Item>
         </Menu>
     );
