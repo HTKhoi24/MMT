@@ -40,4 +40,10 @@
     font-size: 14px;
     color: #828282;
 }
+.ant-menu-horizontal > .ant-menu-item{
+    border-bottom: none;
+}
+.ant-menu-horizontal > .ant-menu-item:hover{
+    border-bottom: none;
+}
   
