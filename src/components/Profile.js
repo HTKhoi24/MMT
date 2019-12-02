@@ -39,12 +39,12 @@ export default class Profile extends Component {
         });
     }
 
-    loadData = () => {
+    loadTempData = () => {
         this.setState({
             isLoading: true
         });
-        let valueName, number;
-        getData(valueName = 'TEMPERATURE', number = 10).then(response => {
+        let valueName = 'TEMPERATURE', number = 10;
+        getData(valueName, number).then(response => {
             const temperature = this.state.temperature.slice();
             this.setState({
                 temperature: temperature.concat(response),
@@ -58,10 +58,70 @@ export default class Profile extends Component {
         });
     }
 
+    loadHumidData = () => {
+        this.setState({
+            isLoading: true
+        });
+        let valueName = 'HUMIDITY', number = 10;
+        getData(valueName, number).then(response => {
+            const humidity = this.state.humidity.slice();
+            this.setState({
+                humidity: humidity.concat(response),
+                isLoading: false
+            });
+            console.log(this.state.humidity);
+        }).catch(error => {
+            this.setState({
+                isLoading: false
+            });
+        });
+    }
+
+    loadPeopleData = () => {
+        this.setState({
+            isLoading: true
+        });
+        let valueName = 'NUM_OF_HUMAN', number = 10;
+        getData(valueName, number).then(response => {
+            const numOfHuman = this.state.numOfHuman.slice();
+            this.setState({
+                numOfHuman: numOfHuman.concat(response),
+                isLoading: false
+            });
+            console.log(this.state.numOfHuman);
+        }).catch(error => {
+            this.setState({
+                isLoading: false
+            });
+        });
+    }
+
+    loadBulbData = () => {
+        this.setState({
+            isLoading: true
+        });
+        let valueName = 'BULB_STATE', number = 10;
+        getData(valueName, number).then(response => {
+            const bulbState = this.state.bulbState.slice();
+            this.setState({
+                bulbState: bulbState.concat(response),
+                isLoading: false
+            });
+            console.log(this.state.bulbState);
+        }).catch(error => {
+            this.setState({
+                isLoading: false
+            });
+        });
+    }
+
     componentDidMount() {
         window.scrollTo(0, 0);
         this.loadCurrentUser();
-        this.loadData();
+        this.loadTempData();
+        this.loadHumidData();
+        this.loadPeopleData();
+        this.loadBulbData();
     }
 
     temperature = (canvas) => {
