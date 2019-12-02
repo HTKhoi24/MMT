@@ -7,7 +7,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import { getUser } from '../api/APIUtil';
+import { getUser, getData } from '../api/APIUtil';
 // import { NONAME } from 'dns';
 
 export default class Profile extends Component {
@@ -15,7 +15,11 @@ export default class Profile extends Component {
         super(props);
         this.state = {
             user: null,
-            isLoading: false
+            isLoading: false,
+            temperature: [],
+            humidity: [],
+            numOfHuman: [],
+            bulbState: []
         }
     }
 
@@ -35,9 +39,29 @@ export default class Profile extends Component {
         });
     }
 
+    loadData = () => {
+        this.setState({
+            isLoading: true
+        });
+        let valueName, number;
+        getData(valueName = 'TEMPERATURE', number = 10).then(response => {
+            const temperature = this.state.temperature.slice();
+            this.setState({
+                temperature: temperature.concat(response),
+                isLoading: false
+            });
+            console.log(this.state.temperature);
+        }).catch(error => {
+            this.setState({
+                isLoading: false
+            });
+        });
+    }
+
     componentDidMount() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         this.loadCurrentUser();
+        this.loadData();
     }
 
     temperature = (canvas) => {
@@ -57,6 +81,7 @@ export default class Profile extends Component {
             ]
         }
     }
+
     humidity = (canvas) => {
         const ctx = canvas.getContext("2d");
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
@@ -97,8 +122,8 @@ export default class Profile extends Component {
             disableMutationObserver: false, // disables automatic mutations' detections (advanced)
             debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
             throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-            
-          
+
+
             // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
             offset: 120, // offset (in px) from the original trigger point
             delay: 0, // values from 0 to 3000, with step 50ms
@@ -107,7 +132,7 @@ export default class Profile extends Component {
             once: false, // whether animation should happen only once - while scrolling down
             mirror: false, // whether elements should animate out while scrolling past them
             anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-          
+
           });
         return (
             <div className="profile-page container">
@@ -117,7 +142,9 @@ export default class Profile extends Component {
                         <div className="user-summary">
                             <div className="full-name">{this.state.user.fullName}</div>
                             <div className="username">@{this.state.user.username}</div>
+                            <div className="birthday">{this.state.user.birthday}</div>
                             <div className="email">{this.state.user.email}</div>
+                            <div className="phone">{this.state.user.phone}</div>
                         </div>
                     </div>
                 ) : null}
