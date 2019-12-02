@@ -49,3 +49,10 @@ export function getUser() {
         method: 'GET'
     });
 }
+
+export function getData(valueName, number) {
+    return request({
+        url: API_BASE_URL + "/history?valueName=" + valueName + "&number=" + number,
+        method: 'GET',
+    });
+}
