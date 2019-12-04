@@ -7,7 +7,7 @@
   .user-detail {
       display: flex;
       margin-bottom: 50px;
-      padding-top: 30px;
+      padding-top: 20px;
       padding-bottom: 30px;
       margin: 0 auto;
       text-align: center;
@@ -23,17 +23,21 @@
   
   .user-summary {
       text-align: left;
-      margin-left: 20px;
-      padding-top: 20px;
+      width: 100%;
+      font-size: 20px;
+  }
+  .user-summary .summary-col{
+      padding-left: 30px;
   }
   
   .user-summary .full-name {
-      font-size: 35px;
+      font-size: 33px;
       font-weight: 700;
       color: rgba(0,0,0,0.85);
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      margin-top: 10px;
   }
   
   .user-summary .username {
@@ -41,7 +45,10 @@
   }
   
   .user-summary .email {
-      margin-top: 5px;
+      margin-top: 10px;
+  }
+  .user-summary .phone{
+    margin-top: 10px;
   }
   /* END USER DETAIL */
 
@@ -53,26 +60,33 @@
     margin-bottom: 20px;
   }
   .mySensor .sensor-title{
+      /* color: white; */
       text-align: center;
-      color: white;
-      background: linear-gradient(90deg, rgba(0,21,245,1) 0%, rgba(0,112,255,1) 35%, rgba(148,157,255,1) 90%);
+      background: linear-gradient(90deg, rgba(0,17,143,1) 0%, rgba(0,31,255,1) 40%, rgba(255,255,255,1) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       border-radius: 20px;
+      padding-left: 20px;
   }
   .mySensor .temper-sensor h3{
       color: white;
-      background: linear-gradient(90deg, rgba(245,0,0,1) 0%, rgba(255,55,0,1) 35%, rgba(255,128,0,1) 90%);
+      background: linear-gradient(90deg, rgba(245,0,0,1) 0%, rgba(255,55,0,1) 30%, rgba(255,176,97,1) 40%);
       border-radius: 20px;
       padding-left: 20px;
   }
+  /* .mySensor .temper-sensor .temper-chart{
+      margin-bottom: 20px;
+  } */
   .mySensor .humid-sensor h3{
       color: white;
-      background: linear-gradient(90deg, rgba(0,165,245,1) 0%, rgba(0,254,255,1) 35%, rgba(210,255,252,1) 90%);
+      background: linear-gradient(90deg, rgba(0,165,245,1) 0%, rgba(0,254,255,1) 30%, rgba(210,255,252,1) 40%);
       border-radius: 20px;
       padding-left: 20px;
+      margin-top: 20px;
   }
   .mySensor .people-sensor h3, .mySensor .light-sensor h3{
     color: white;
-    background: linear-gradient(90deg, rgba(0,21,245,1) 0%, rgba(0,112,255,1) 35%, rgba(148,157,255,1) 90%);
+    background: linear-gradient(90deg, rgba(0,17,143,1) 0%, rgba(0,31,255,1) 30%, rgba(176,201,255,1) 40%);
     border-radius: 20px;
     padding-left: 20px;
   }

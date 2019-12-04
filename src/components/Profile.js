@@ -6,6 +6,8 @@ import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timel
 import 'react-vertical-timeline-component/style.min.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+
 
 import { getUser, getData } from '../api/APIUtil';
 // import { NONAME } from 'dns';
@@ -129,12 +131,20 @@ export default class Profile extends Component {
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, '#ff9a00');
         gradient.addColorStop(1, '#f9ff94');
+        var label = [];
+        this.state.temperature.forEach((item, index) => {
+            label.push(item.time);
+        })
+        var data = [];
+        this.state.temperature.forEach((item, index) => {
+            data.push(item.data);
+        })
         return {
             id: '1',
-            labels: ['07-06-19', '08-06-19', '09-06-19', '10-06-19', '11-06-19', '12-06-19'],
+            labels: label,
             datasets: [{
-                label: 'Your room temper',
-                data: [20, 25, 23, 27, 21, 0],
+                label: 'Your room temperature',
+                data: data,
                 borderColor: '#f51000',
                 backgroundColor: gradient,
             }
@@ -147,29 +157,25 @@ export default class Profile extends Component {
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, '#0df4f1');
         gradient.addColorStop(1, '#ffffff');
+        var label = [];
+        this.state.humidity.forEach((item) => {
+            label.push(item.time);
+        })
+        var data = [];
+        this.state.humidity.forEach((item) => {
+            data.push(item.data);
+        })
         return {
             id: '2',
-            labels: ['07-06-19', '08-06-19', '09-06-19', '10-06-19', '11-06-19', '12-06-19'],
+            labels: label,
             datasets: [{
                 label: 'Your room humidity',
-                data: [100, 26, 0, 211, 391, 111],
+                data: data,
                 borderColor: '#0eb2fb',
                 backgroundColor: gradient,
             }]
         }
-    }
-    peopleInOut = [
-        { date: '7/6/19', in: '100', out: '200', },
-        { date: '6/7/19', in: '111', out: '222', },
-        { date: '1/1/19', in: '123', out: '321', }
-
-    ]
-    lightOnOff = [
-        { date: '7/6/19', on: '100', off: '200', },
-        { date: '6/7/19', on: '111', off: '222', },
-        { date: '1/1/19', on: '123', off: '321', }
-
-    ]
+    };
 
     render() {
         AOS.init({
@@ -199,74 +205,87 @@ export default class Profile extends Component {
                 {this.state.user ? (
                     <div className="user-detail">
                         <Avatar className="user-detail-avatar" src='https://img00.deviantart.net/2cb8/i/2013/117/7/a/assassins_avatar_by_multispeedking-d6380y4.png' />
-                        <div className="user-summary">
-                            <div className="full-name">{this.state.user.fullName}</div>
-                            <div className="username">@{this.state.user.username}</div>
-                            <div className="birthday">{this.state.user.birthday}</div>
-                            <div className="email">{this.state.user.email}</div>
-                            <div className="phone">{this.state.user.phone}</div>
+                        <div className="user-summary container">
+                            <div className="row">
+                                <div className="col-lg-6 summary-col">
+                                    <div className="full-name">{this.state.user.fullName}</div>
+                                    <div className="username">@{this.state.user.username}</div>
+                                    
+                                </div>
+                                <div className="col-lg-6 summary-col">
+                                    <div className="birthday">Date Of Birth: {this.state.user.birthday}</div>
+                                    <div className="email">Email: {this.state.user.email}</div>
+                                    <div className="phone">Phone: {this.state.user.phone}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ) : null}
                 <div className="mySensor">
-                    <h2 className = "sensor-title">MY SENSORS</h2>
+                    <h2 className="sensor-title">MY SENSORS' DATA</h2>
                     <div className="temper-sensor" >
                         <h3 data-aos="fade-right">Temperature Sensors</h3>
-                        < Line className = 'temper-chart'
-                        data={this.temperature}
-                        height = {200}
-                        options={{ maintainAspectRatio: false }}
-                        data-aos="zoom-in" />
+                        < Line className='temper-chart'
+                            data={this.temperature}
+                            height={250}
+                            options={{ maintainAspectRatio: false }}
+                            data-aos="fade-right"/>
                     </div>
                     <div className="humid-sensor">
                         <h3 data-aos="fade-right">Humidity Sensors</h3>
-                        < Line className = 'humid-chart'
-                        data={this.humidity}
-                        height = {200}
-                        options={{ maintainAspectRatio: false }}
-                        data-aos="zoom-in" />
+                        < Line className='humid-chart'
+                            data={this.humidity}
+                            height={200}
+                            options={{ maintainAspectRatio: false }}
+                            data-aos="zoom-in" />
                     </div>
-                    <div className="row">
-                        <div className="col-xl-6">
-                            <div className="people-sensor">
-                                <h3 data-aos="fade-right">People In / Out</h3>
-                                <VerticalTimeline>
-                                    {this.peopleInOut.map((item, index) => (
-                                        <VerticalTimelineElement
-                                            className="vertical-timeline-element--work"
-                                            contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
-                                            contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
-                                            date={item.date}
-                                            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                        // icon={<StarIcon />}
-                                        >
-                                            <p>IN : {item.in}</p>
-                                            <p>OUT : {item.out}</p>
-                                        </VerticalTimelineElement>
-                                    ))}
-                                </VerticalTimeline>
-                            </div>
-                        </div>
-                        <div className="col-xl-6">
-                            <div className="light-sensor">
-                                <h3 data-aos="fade-right">Light On / Off</h3>
-                                <VerticalTimeline>
-                                    {this.lightOnOff.map((item, index) => (
-                                        <VerticalTimelineElement
-                                            className="vertical-timeline-element--work"
-                                            contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
-                                            contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
-                                            date={item.date}
-                                            iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                        // icon={<StarIcon />}
-                                        >
-                                            <p>ON : {item.on}</p>
-                                            <p>OFF : {item.off}</p>
-                                        </VerticalTimelineElement>
-                                    ))}
-                                </VerticalTimeline>
-                            </div>
-                        </div>
+                    <div className="people-sensor">
+                        <h3 data-aos="fade-right">People - History</h3>
+                        <Element name="people-timeline" className="element" id="containerElement" style={{
+                            position: 'relative',
+                            height: '300px',
+                            overflow: 'scroll',
+                            marginBottom: '100px'
+                        }}>
+                            <VerticalTimeline>
+                                {this.state.numOfHuman.map((item, index) => (
+                                    <VerticalTimelineElement
+                                        className="vertical-timeline-element--work"
+                                        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
+                                        contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
+                                        date={item.time}
+                                        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                                    // icon={<StarIcon />}
+                                    >
+                                        <p>NUMBER OF PEOPLE : {item.data}</p>
+                                    </VerticalTimelineElement>
+                                ))}
+                            </VerticalTimeline>
+                        </Element>
+                    </div>
+                    <div className="light-sensor">
+                        <h3 data-aos="fade-right">Lighting - History</h3>
+                        <Element name="light-timeline" className="element" id="containerElement" style={{
+                            position: 'relative',
+                            height: '300px',
+                            overflow: 'scroll',
+                            marginBottom: '100px'
+                        }}>
+                            <VerticalTimeline>
+                                {this.state.bulbState.map((item, index) => (
+                                    <VerticalTimelineElement
+                                        className="vertical-timeline-element--work"
+                                        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
+                                        contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
+                                        date={item.time}
+                                        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                                    // icon={<StarIcon />}
+                                    >
+                                        <p>STATE OF LIGHTING : {item.data}</p>
+                                    </VerticalTimelineElement>
+                                ))}
+                            </VerticalTimeline>
+                        </Element>
                     </div>
                 </div>
             </div>
