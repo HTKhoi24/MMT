@@ -6,6 +6,7 @@ import Footer from './Footer'
 import '../css/toTop.css'
 import { animateScroll as scroll } from "react-scroll";
 import Animate from './Animate'
+import Advantage from './Advantage'
 export default class Home extends Component {
     constructor(props) {
         super(props)
@@ -20,8 +21,9 @@ export default class Home extends Component {
         return (
             <div>
                 <Carousel/>
-                <Animate />
+                {/* <Animate /> */}
                 <Welcome/>
+                <Advantage/>
                 <GoogleMap />
                 <Footer />
                 <i 

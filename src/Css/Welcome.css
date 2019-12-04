@@ -1,0 +1,14 @@
+.welcome
+{
+    padding: 30px 0;
+}
+.welcome h2 span {
+    color: #15009e;
+}
+.welcome h2, p{
+    text-align: center;
+}
+.welcome-content{
+    width: 70%;
+    margin: 0 auto;
+}

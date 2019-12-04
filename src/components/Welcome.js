@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-
+import '../css/Welcome.css'
 export default class Welcome extends Component {
     render() {
         return (
-            <div className = "container">
-                <h2>WELCOME TO SMART ROOM</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus aspernatur nam repudiandae impedit libero dicta consequuntur odit, necessitatibus quo natus ex dignissimos ducimus vel illum vitae. Perspiciatis eaque quos iste.</p>
+            <div className = "welcome">
+            <div className = "welcome-content">
+                <h2>BETTER. FASTER. <span>STRONGER.</span></h2>
+                <p>
+                Better Speed, Security, and Service. That’s what SmartRoom delivers. With a dedicated project manager, upload speeds at 5MB’s per second, and the most advanced multi-layered security of any other data room platform on the market, you can rely on SmartRoom to deliver a virtual data room experience that is second to none.
+                </p>
+            </div>
             </div>
         )
     }
