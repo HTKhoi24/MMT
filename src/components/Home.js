@@ -7,6 +7,7 @@ import '../css/toTop.css'
 import { animateScroll as scroll } from "react-scroll";
 import Animate from './Animate'
 import Advantage from './Advantage'
+import Ourtools from './Ourtools'
 export default class Home extends Component {
     constructor(props) {
         super(props)
@@ -24,6 +25,7 @@ export default class Home extends Component {
                 {/* <Animate /> */}
                 <Welcome/>
                 <Advantage/>
+                <Ourtools/>
                 <GoogleMap />
                 <Footer />
                 <i 

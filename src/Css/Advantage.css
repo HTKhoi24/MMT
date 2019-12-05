@@ -7,14 +7,19 @@
     padding: 30px 0;
 }
 .advantage span{
-    color: #15009e;
+    color: #1890ff;
 }
 .advantage .advantage-row i{
     font-size: 80px;
     color: white;
-    border: 1px solid #15009e;
-    background: #15009e;
+    border: 1px solid #1890ff;
+    background: #1890ff;
     padding: 70px;
+    transition: all 0.5s;
+}
+.advantage .advantage-row i:hover {
+
+    background: #4267b2;
 }
 .advantage .advantage-row h4{
     margin-top: 20px;
