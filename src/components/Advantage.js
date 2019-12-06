@@ -18,7 +18,7 @@ export default class Advantage extends Component {
                             <div className="col-4" data-aos='zoom-in'>
                                 <div className="advantage-item">
 
-                                    <i class="fas fa-hand-holding-usd"></i>
+                                    <i className="fas fa-hand-holding-usd"></i>
                                     <h4>LESS EFFORT</h4>
                                     <p>Reduce administrative redundancies by <span>30%</span></p>
                                 </div>

@@ -4,6 +4,8 @@ import '../css/Profile.css';
 import { Line } from 'react-chartjs-2';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+
+import '../css/toTop.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
@@ -176,6 +178,9 @@ export default class Profile extends Component {
             }]
         }
     };
+    scrollToTop = () => {
+        scroll.scrollToTop(); 
+    };
 
     render() {
         AOS.init({
@@ -288,6 +293,9 @@ export default class Profile extends Component {
                         </Element>
                     </div>
                 </div>
+                <i 
+                className="backtotop fa fa-angle-double-up"
+                onClick={this.scrollToTop} />
             </div>
         );
     }
