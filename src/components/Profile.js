@@ -155,8 +155,8 @@ export default class Profile extends Component {
     humidity = (canvas) => {
         const ctx = canvas.getContext("2d");
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, '#0df4f1');
-        gradient.addColorStop(1, '#ffffff');
+        gradient.addColorStop(0, '#00acff');
+        gradient.addColorStop(1, '#e8ffff');
         var label = [];
         this.state.humidity.forEach((item) => {
             label.push(item.time);
