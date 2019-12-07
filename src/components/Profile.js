@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Avatar } from 'antd';
+import { Avatar, Input  } from 'antd';
 import '../css/Profile.css';
 import { Line } from 'react-chartjs-2';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
@@ -14,12 +14,17 @@ import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, 
 import { getUser, getData } from '../api/APIUtil';
 // import { NONAME } from 'dns';
 
+
+const { Search } = Input;
+
+
 export default class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user: null,
             isLoading: false,
+            isDisplay: false,
             temperature: [],
             humidity: [],
             numOfHuman: [],
@@ -182,6 +187,19 @@ export default class Profile extends Component {
         scroll.scrollToTop(); 
     };
 
+    handleChange = (yourID) => {
+        console.log(yourID);
+        this.setState (state => ({
+            isDisplay : !state.isDisplay
+        }));
+    }
+    handleReturn = () => {
+        this.setState (state => ({
+            isDisplay : !state.isDisplay
+        }));
+    }
+
+
     render() {
         AOS.init({
             // Global settings:
@@ -226,8 +244,13 @@ export default class Profile extends Component {
                         </div>
                     </div>
                 ) : null}
-                <div className="mySensor">
-                    <h2 className="sensor-title">MY SENSORS' DATA</h2>
+                <h2 className="sensor-title">MY SENSORS' DATA</h2>
+                {
+                    this.state.isDisplay === false ? (
+                        <Search placeholder="Input your sensors' ID" onSearch={(value) => this.handleChange(value)} enterButton />
+                    ) : (
+                        <div className="mySensor">
+                        <button className = 'return' onClick = {() => this.handleReturn()}><i className="fas fa-undo-alt"></i></button>
                     <div className="temper-sensor" >
                         <h3 data-aos="fade-right">Temperature Sensors</h3>
                         < Line className='temper-chart'
@@ -293,6 +316,9 @@ export default class Profile extends Component {
                         </Element>
                     </div>
                 </div>
+                    )
+                }
+                
                 <i 
                 className="backtotop fa fa-angle-double-up"
                 onClick={this.scrollToTop} />

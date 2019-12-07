@@ -59,7 +59,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  .mySensor .sensor-title{
+    .sensor-title{
       /* color: white; */
       text-align: center;
       background: linear-gradient(90deg, rgba(0,17,143,1) 0%, rgba(0,31,255,1) 40%, rgba(255,255,255,1) 80%);
@@ -108,4 +108,10 @@
   }
   .mySensor .vertical-timeline--two-columns .vertical-timeline-element:nth-child(even):not(.vertical-timeline-element--left) .vertical-timeline-element-content .vertical-timeline-element-date{
       right: 146%;
+  }
+  .mySensor .return{
+      position: fixed;
+      top: 40%;
+      right: 10%;
+      border-radius: 50%;
   }
