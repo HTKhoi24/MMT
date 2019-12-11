@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Avatar, Input  } from 'antd';
+import { Avatar } from 'antd';
 import '../css/Profile.css';
 import { Line } from 'react-chartjs-2';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
@@ -8,15 +8,9 @@ import 'react-vertical-timeline-component/style.min.css';
 import '../css/toTop.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-
+import { Element, animateScroll as scroll } from 'react-scroll'
 
 import { getUser, getData } from '../api/APIUtil';
-// import { NONAME } from 'dns';
-
-
-const { Search } = Input;
-
 
 export default class Profile extends Component {
     constructor(props) {
@@ -184,21 +178,8 @@ export default class Profile extends Component {
         }
     };
     scrollToTop = () => {
-        scroll.scrollToTop(); 
+        scroll.scrollToTop();
     };
-
-    handleChange = (yourID) => {
-        console.log(yourID);
-        this.setState (state => ({
-            isDisplay : !state.isDisplay
-        }));
-    }
-    handleReturn = () => {
-        this.setState (state => ({
-            isDisplay : !state.isDisplay
-        }));
-    }
-
 
     render() {
         AOS.init({
@@ -233,7 +214,7 @@ export default class Profile extends Component {
                                 <div className="col-lg-6 summary-col">
                                     <div className="full-name">{this.state.user.fullName}</div>
                                     <div className="username">@{this.state.user.username}</div>
-                                    
+
                                 </div>
                                 <div className="col-lg-6 summary-col">
                                     <div className="birthday">Date Of Birth: {this.state.user.birthday}</div>
@@ -244,13 +225,9 @@ export default class Profile extends Component {
                         </div>
                     </div>
                 ) : null}
-                <h2 className="sensor-title">MY SENSORS' DATA</h2>
+                <h2 className="sensor-title">MY SENSORS DATA</h2>
                 {
-                    this.state.isDisplay === false ? (
-                        <Search placeholder="Input your sensors' ID" onSearch={(value) => this.handleChange(value)} enterButton />
-                    ) : (
                         <div className="mySensor">
-                        <button className = 'return' onClick = {() => this.handleReturn()}><i className="fas fa-undo-alt"></i></button>
                     <div className="temper-sensor" >
                         <h3 data-aos="fade-right">Temperature Sensors</h3>
                         < Line className='temper-chart'
@@ -316,10 +293,9 @@ export default class Profile extends Component {
                         </Element>
                     </div>
                 </div>
-                    )
                 }
-                
-                <i 
+
+                <i
                 className="backtotop fa fa-angle-double-up"
                 onClick={this.scrollToTop} />
             </div>

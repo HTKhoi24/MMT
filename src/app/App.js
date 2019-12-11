@@ -74,6 +74,10 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this.loadCurrentUser();
+  }
+
   render() {
     return (
       <Layout>
