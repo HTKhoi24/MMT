@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Avatar } from 'antd';
 import '../css/Profile.css';
 import { Line } from 'react-chartjs-2';
-import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-
 import '../css/toTop.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -184,7 +183,7 @@ export default class Profile extends Component {
     render() {
         AOS.init({
             // Global settings:
-            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+            disable: true, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
             startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
             initClassName: 'aos-init', // class applied after initialization
             animatedClassName: 'aos-animate', // class applied on animation
@@ -203,10 +202,10 @@ export default class Profile extends Component {
             mirror: false, // whether elements should animate out while scrolling past them
             anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
 
-          });
+        });
         return (
-            <div className="profile-page container">
-                {this.state.user ? (
+            <div className="profile-page">
+                {/* {this.state.user ? (
                     <div className="user-detail">
                         <Avatar className="user-detail-avatar" src='https://img00.deviantart.net/2cb8/i/2013/117/7/a/assassins_avatar_by_multispeedking-d6380y4.png' />
                         <div className="user-summary container">
@@ -224,81 +223,85 @@ export default class Profile extends Component {
                             </div>
                         </div>
                     </div>
-                ) : null}
+                ) : null} */}
                 <h2 className="sensor-title">MY SENSORS DATA</h2>
                 {
-                        <div className="mySensor">
-                    <div className="temper-sensor" >
-                        <h3 data-aos="fade-right">Temperature Sensors</h3>
-                        < Line className='temper-chart'
-                            data={this.temperature}
-                            height={250}
-                            options={{ maintainAspectRatio: false }}
-                            data-aos="fade-right"/>
+
+                    <div className="mySensor">
+                        <div className="row">
+                            <div className="temper-sensor col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" >
+                                <h3 data-aos="fade-right">Temperature Sensors</h3>
+                                < Line className='temper-chart'
+                                    data={this.temperature}
+                                    height={250}
+                                    options={{ maintainAspectRatio: false }}
+                                    data-aos="fade-right" />
+                            </div>
+                            <div className="humid-sensor col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <h3 data-aos="fade-right">Humidity Sensors</h3>
+                                < Line className='humid-chart'
+                                    data={this.humidity}
+                                    height={200}
+                                    options={{ maintainAspectRatio: false }}
+                                    data-aos="zoom-in" />
+                            </div>
+                            <div className="people-sensor col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-3">
+                                <h3 data-aos="fade-right">People - History</h3>
+                                <Element name="people-timeline" className="element" id="containerElement" style={{
+                                    position: 'relative',
+                                    height: '300px',
+                                    overflow: 'scroll',
+    
+                                }}>
+                                    <VerticalTimeline>
+                                        {this.state.numOfHuman.map((item, index) => (
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--work"
+                                                contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
+                                                contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
+                                                date={item.time}
+                                                iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                                            // icon={<StarIcon />}
+                                            >
+                                                <p>NUMBER OF PEOPLE : {item.data}</p>
+                                            </VerticalTimelineElement>
+                                        ))}
+                                    </VerticalTimeline>
+                                </Element>
+                            </div>
+                            <div className="light-sensor col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-3">
+                                <h3 data-aos="fade-right">Lighting - History</h3>
+                                <Element name="light-timeline" className="element" id="containerElement" style={{
+                                    position: 'relative',
+                                    height: '300px',
+                                    overflow: 'scroll',
+    
+                                }}>
+                                    <VerticalTimeline>
+                                        {this.state.bulbState.map((item, index) => (
+                                            <VerticalTimelineElement
+                                                className="vertical-timeline-element--work"
+                                                contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
+                                                contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
+                                                date={item.time}
+                                                iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
+                                            // icon={<StarIcon />}
+                                            >
+                                                <p>STATE OF LIGHTING : {item.data}</p>
+                                            </VerticalTimelineElement>
+                                        ))}
+                                    </VerticalTimeline>
+                                </Element>
+                            </div>
+                        </div>
                     </div>
-                    <div className="humid-sensor">
-                        <h3 data-aos="fade-right">Humidity Sensors</h3>
-                        < Line className='humid-chart'
-                            data={this.humidity}
-                            height={200}
-                            options={{ maintainAspectRatio: false }}
-                            data-aos="zoom-in" />
-                    </div>
-                    <div className="people-sensor">
-                        <h3 data-aos="fade-right">People - History</h3>
-                        <Element name="people-timeline" className="element" id="containerElement" style={{
-                            position: 'relative',
-                            height: '300px',
-                            overflow: 'scroll',
-                            marginBottom: '100px'
-                        }}>
-                            <VerticalTimeline>
-                                {this.state.numOfHuman.map((item, index) => (
-                                    <VerticalTimelineElement
-                                        className="vertical-timeline-element--work"
-                                        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
-                                        contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
-                                        date={item.time}
-                                        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                    // icon={<StarIcon />}
-                                    >
-                                        <p>NUMBER OF PEOPLE : {item.data}</p>
-                                    </VerticalTimelineElement>
-                                ))}
-                            </VerticalTimeline>
-                        </Element>
-                    </div>
-                    <div className="light-sensor">
-                        <h3 data-aos="fade-right">Lighting - History</h3>
-                        <Element name="light-timeline" className="element" id="containerElement" style={{
-                            position: 'relative',
-                            height: '300px',
-                            overflow: 'scroll',
-                            marginBottom: '100px'
-                        }}>
-                            <VerticalTimeline>
-                                {this.state.bulbState.map((item, index) => (
-                                    <VerticalTimelineElement
-                                        className="vertical-timeline-element--work"
-                                        contentStyle={{ background: 'rgb(33, 150, 243)', color: '#000000' }}
-                                        contentArrowStyle={{ borderRight: '5px solid  rgb(33, 150, 243)' }}
-                                        date={item.time}
-                                        iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                    // icon={<StarIcon />}
-                                    >
-                                        <p>STATE OF LIGHTING : {item.data}</p>
-                                    </VerticalTimelineElement>
-                                ))}
-                            </VerticalTimeline>
-                        </Element>
-                    </div>
-                </div>
                 }
 
                 <i
-                className="backtotop fa fa-angle-double-up"
-                onClick={this.scrollToTop} />
+                    className="backtotop fa fa-angle-double-up"
+                    onClick={this.scrollToTop} />
             </div>
+
         );
     }
 }

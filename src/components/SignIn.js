@@ -16,7 +16,6 @@ export default class SignIn extends Component {
     }
 }
 class SigninForm extends Component {
-
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.form.validateFields((err, values) => {

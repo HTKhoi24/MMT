@@ -1,6 +1,8 @@
 .profile-page {
     min-height: 100vh;
     margin-top: 75px;
+    width: 95%;
+    margin: 0 auto;
   }
   
   /* USER DETAIL */
@@ -72,6 +74,7 @@
       color: white;
       background: linear-gradient(90deg, rgba(245,0,0,1) 0%, rgba(255,55,0,1) 30%, rgba(255,176,97,1) 40%);
       border-radius: 20px;
+      margin-top: 20px;
       padding-left: 20px;
   }
   /* .mySensor .temper-sensor .temper-chart{
@@ -114,4 +117,7 @@
       top: 40%;
       right: 10%;
       border-radius: 50%;
+  }
+  .mySensor canvas {
+    height: 300px !important;
   }

@@ -20,7 +20,7 @@ export default class Ourtools extends Component {
                         <div className="col-8 toolcenterfa">
                             <div className="toolcenterchild">
                                 <h1 className="text-center"><a href="https://lumi.vn/Nha-thong-minh-ct-10-43-multi-audio.html" target="_blank" rel="noopener noreferrer">Multi Audio</a></h1>
-                                <p>A great device by Lumi with many preeminent gadgets that other devices don't have. Customers will experience music anywhere, be it the living room, bedroom, kitchen or even outside the outdoor dining area, ....</p>
+                                <p>A great device with many preeminent gadgets that other devices don't have. Customers will experience music anywhere, be it the living room, bedroom, kitchen or even outside the outdoor dining area, ....</p>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ export default class Ourtools extends Component {
                     <div className="col-8 toolcenterfa">
                             <div className="toolcenterchild">
                                 <h1 className="text-center"><a href="https://lumi.net.vn/thiet-bi-dien/cam-bien-phat-hien-chuyen-dong-lm-md/" target="_blank" rel="noopener noreferrer">Sensor Detect Movement</a></h1>
-                                <p>A great device by Lumi with many preeminent gadgets that other devices don't have. Customers will experience music anywhere, be it the living room, bedroom, kitchen or even outside the outdoor dining area, ....</p>
+                                <p>A great device with many preeminent gadgets that other devices don't have. Customers will experience music anywhere, be it the living room, bedroom, kitchen or even outside the outdoor dining area, ....</p>
                             </div>
                         </div>
 
